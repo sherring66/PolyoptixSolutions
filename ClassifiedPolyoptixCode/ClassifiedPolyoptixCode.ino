@@ -39,10 +39,10 @@ void setup() {
 
 void loop() { 
   ultrasonic();
-  accelerom();
+  accelerometer();
 }
 
-void accelerom(){
+void accelerometer(){
   /* Get a new sensor event */
   sensors_event_t event;
   accel.getEvent(&event);
