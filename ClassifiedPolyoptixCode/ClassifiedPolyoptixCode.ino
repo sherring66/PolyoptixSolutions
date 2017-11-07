@@ -3,6 +3,7 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_LSM303.h>
 #include <Adafruit_LSM303_U.h>
+//#include <Servo.h>
 
 //Camera library
 #include <Adafruit_VC0706.h>
@@ -11,14 +12,21 @@
 #include <SPI.h>
 #include <SD.h>
 
-#define SONAR_NUM 3      // Number of sensors.
+#define SONAR_NUM 1      // Number of sensors.
 #define MAX_DISTANCE 200 // Maximum distance (in cm) to ping.
 
 NewPing sonar[SONAR_NUM] = {   // Sensor object array.
-  NewPing(8, 9, MAX_DISTANCE), // Each sensor's trigger pin, echo pin, and max distance to ping. 
-  NewPing(5, 4, MAX_DISTANCE),
-  NewPing(6, 7, MAX_DISTANCE)
+  NewPing(8, 7, MAX_DISTANCE), // Each sensor's trigger pin, echo pin, and max distance to ping. 
 };
+
+int sensor0 = 0;
+int sensor1 = 0;
+int sensor2 = 0;
+int sensor3 = 0;
+int sensor4 = 0;
+int sensor5 = 0;
+int sensor6 = 0;
+int sensor7 = 0;
 
 /* Assign a unique ID to this sensor at the same time */
 Adafruit_LSM303_Accel_Unified accel = Adafruit_LSM303_Accel_Unified(54321);
@@ -51,6 +59,10 @@ NewSoftSerial cameraconnection = NewSoftSerial(2, 3);
 Adafruit_VC0706 cam = Adafruit_VC0706(&cameraconnection);
 
 void setup() {
+
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT); //ABC to control MUX
    
 #ifndef ESP8266
   while (!Serial);     // will pause Zero, Leonardo, etc until serial console opens
@@ -242,8 +254,106 @@ End of card info printing */
 }
 
 void loop() { 
-  ultrasonic();
-  accelerometer();
+  //ultrasonic();
+  //accelerometer();
+
+  //sensor0 
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, LOW);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor0 = ");
+  sensor0 = sonar[0].ping_cm();
+  Serial.print(sensor0);
+  Serial.print("cm ");
+
+  //sensor1 
+  digitalWrite(4, HIGH);
+  //digitalWrite(5, LOW);
+  //digitalWrite(6, LOW);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor1 = ");
+  sensor1 = sonar[0].ping_cm();
+  Serial.print(sensor1);
+  Serial.print("cm ");
+
+  //sensor2 
+  digitalWrite(4, LOW);
+  digitalWrite(5, HIGH);
+  //digitalWrite(6, LOW);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor2 = ");
+  sensor2 = sonar[0].ping_cm();
+  Serial.print(sensor2);
+  Serial.print("cm ");
+
+  //sensor3 
+  digitalWrite(4, HIGH);
+  //digitalWrite(5, HIGH);
+  //digitalWrite(6, LOW);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor3 = ");
+  sensor3 = sonar[0].ping_cm();
+  Serial.print(sensor3);
+  Serial.print("cm ");
+
+  //sensor4 
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, HIGH);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor4 = ");
+  sensor4 = sonar[0].ping_cm();
+  Serial.print(sensor4);
+  Serial.print("cm ");
+  
+  //sensor5 
+  digitalWrite(4, HIGH);
+  //digitalWrite(5, LOW);
+  //digitalWrite(6, HIGH);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor5 = ");
+  sensor5 = sonar[0].ping_cm();
+  Serial.print(sensor5);
+  Serial.print("cm ");
+
+  //sensor6 
+  //digitalWrite(4, HIGH);
+  digitalWrite(5, HIGH);
+  digitalWrite(6, LOW);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor6 = ");
+  sensor6 = sonar[0].ping_cm();
+  Serial.print(sensor6);
+  Serial.print("cm ");
+
+  //sensor7
+  //digitalWrite(4, HIGH);
+  //digitalWrite(5, HIGH);
+  digitalWrite(6, HIGH);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor7 = ");
+  sensor7 = sonar[0].ping_cm();
+  Serial.print(sensor7);
+  Serial.print("cm ");
+  
+  Serial.println();
 }
 
 void accelerometer(){
@@ -267,13 +377,102 @@ void accelerometer(){
   delay(50);
 }
 void ultrasonic(){
-  for (uint8_t i = 0; i < SONAR_NUM; i++) { // Loop through each sensor and display results.
-    delay(29); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
-    Serial.print(i);
-    Serial.print("=");
-    Serial.print(sonar[i].ping_cm());
-    Serial.print("cm ");
-  }
+  //sensor0 
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, LOW);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor0 = ");
+  sensor0 = sonar[0].ping_cm();
+  Serial.print(sensor0);
+  Serial.print("cm ");
+
+  //sensor1 
+  digitalWrite(4, HIGH);
+  //digitalWrite(5, LOW);
+  //digitalWrite(6, LOW);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor1 = ");
+  sensor1 = sonar[0].ping_cm();
+  Serial.print(sensor1);
+  Serial.print("cm ");
+
+  //sensor2 
+  digitalWrite(4, LOW);
+  digitalWrite(5, HIGH);
+  //digitalWrite(6, LOW);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor2 = ");
+  sensor2 = sonar[0].ping_cm();
+  Serial.print(sensor2);
+  Serial.print("cm ");
+
+  //sensor3 
+  digitalWrite(4, HIGH);
+  //digitalWrite(5, HIGH);
+  //digitalWrite(6, LOW);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor3 = ");
+  sensor3 = sonar[0].ping_cm();
+  Serial.print(sensor3);
+  Serial.print("cm ");
+
+  //sensor4 
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, HIGH);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor4 = ");
+  sensor4 = sonar[0].ping_cm();
+  Serial.print(sensor4);
+  Serial.print("cm ");
+  
+  //sensor5 
+  digitalWrite(4, HIGH);
+  //digitalWrite(5, LOW);
+  //digitalWrite(6, HIGH);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor5 = ");
+  sensor5 = sonar[0].ping_cm();
+  Serial.print(sensor5);
+  Serial.print("cm ");
+
+  //sensor6 
+  //digitalWrite(4, HIGH);
+  digitalWrite(5, HIGH);
+  digitalWrite(6, LOW);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor6 = ");
+  sensor6 = sonar[0].ping_cm();
+  Serial.print(sensor6);
+  Serial.print("cm ");
+
+  //sensor7
+  //digitalWrite(4, HIGH);
+  //digitalWrite(5, HIGH);
+  digitalWrite(6, HIGH);
+  
+  delay(50); // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    
+  Serial.print("sensor7 = ");
+  sensor7 = sonar[0].ping_cm();
+  Serial.print(sensor7);
+  Serial.print("cm ");
+  
   Serial.println();
 }
 
