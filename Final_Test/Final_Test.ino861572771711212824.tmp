@@ -264,40 +264,30 @@ void loop() {
         break;
         }
         myservo.write(0);
-        delay(500);
-        break;
         }
   while(sensor[1] < sensor[0] & sensor[1] < sensor[2] & sensor[1] < sensor[3] & sensor[1] < sensor[4]){
       if (sensor[1] < 1){
         break;
         }
         myservo.write(45);
-        delay(500);
-        break;
         }
   while(sensor[2] < sensor[0] & sensor[2] < sensor[1] & sensor[2] < sensor[3] & sensor[2] < sensor[4]){
       if (sensor[2] < 1){
         break;
         }
         myservo.write(90);
-        delay(500);
-        break;
         }
   while(sensor[3] < sensor[0] & sensor[3] < sensor[1] & sensor[3] < sensor[2] & sensor[3] < sensor[4])
       {if (sensor[3] < 1){
         break;
         }
         myservo.write(135);
-        delay(500);
-        break;
         }
    while(sensor[4] < sensor[0] & sensor[4] < sensor[1] & sensor[4] < sensor[2] & sensor[4] < sensor[3])
       {if (sensor[4] < 1){
         break;
         }
         myservo.write(180);
-        delay(500);
-        break;
         }
   /*myservo.write(0);
   delay(500);
@@ -426,9 +416,7 @@ void sensorPolling(){
     
   Serial.print("sensor5 = ");
   sensor[5] = sonar[0].ping_cm();
-  if (sensor[5] == 0){
-      sensor[5] = 200;
-    }
+  sensorDefault();
   Serial.print(sensor[5]);
   Serial.print("cm ");
 
@@ -441,9 +429,7 @@ void sensorPolling(){
     
   Serial.print("sensor6 = ");
   sensor[6] = sonar[0].ping_cm();
-  if (sensor[6] == 0){
-      sensor[6] = 200;
-    }
+  sensorDefault();
   Serial.print(sensor[6]);
   Serial.print("cm ");
 
@@ -456,9 +442,7 @@ void sensorPolling(){
     
   Serial.print("sensor7 = ");
   sensor[7] = sonar[0].ping_cm();
-  if (sensor[7] == 0){
-      sensor[7] = 200;
-    }
+  sensorDefault();
   Serial.print(sensor[7]);
   Serial.print("cm ");
   

@@ -250,7 +250,11 @@ End of card info printing*/
 }
 
 void loop() { 
-  
+  for (int i = 0; i < 4; i++){
+    if (sensor[i] == 0){
+      sensor[i] = 200;
+    }
+  }
   sensorPolling();
   //accelerometer();
   
@@ -264,40 +268,30 @@ void loop() {
         break;
         }
         myservo.write(0);
-        delay(500);
-        break;
         }
   while(sensor[1] < sensor[0] & sensor[1] < sensor[2] & sensor[1] < sensor[3] & sensor[1] < sensor[4]){
       if (sensor[1] < 1){
         break;
         }
         myservo.write(45);
-        delay(500);
-        break;
         }
   while(sensor[2] < sensor[0] & sensor[2] < sensor[1] & sensor[2] < sensor[3] & sensor[2] < sensor[4]){
       if (sensor[2] < 1){
         break;
         }
         myservo.write(90);
-        delay(500);
-        break;
         }
   while(sensor[3] < sensor[0] & sensor[3] < sensor[1] & sensor[3] < sensor[2] & sensor[3] < sensor[4])
       {if (sensor[3] < 1){
         break;
         }
         myservo.write(135);
-        delay(500);
-        break;
         }
    while(sensor[4] < sensor[0] & sensor[4] < sensor[1] & sensor[4] < sensor[2] & sensor[4] < sensor[3])
       {if (sensor[4] < 1){
         break;
         }
         myservo.write(180);
-        delay(500);
-        break;
         }
   /*myservo.write(0);
   delay(500);
@@ -339,7 +333,6 @@ void accelerometer(){
   delay(50);
 }
 
-
 void sensorPolling(){
   
   //sensor0 
@@ -351,9 +344,6 @@ void sensorPolling(){
     
   Serial.print("sensor0 = ");
   sensor[0] = sonar[0].ping_cm();
-  if (sensor[0] == 0){
-      sensor[0] = 200;
-    }
   Serial.print(sensor[0]);
   Serial.print("cm ");
 
@@ -366,9 +356,6 @@ void sensorPolling(){
     
   Serial.print("sensor1 = ");
   sensor[1] = sonar[0].ping_cm();
-  if (sensor[1] == 0){
-      sensor[1] = 200;
-    }
   Serial.print(sensor[1]);
   Serial.print("cm ");
 
@@ -381,9 +368,6 @@ void sensorPolling(){
     
   Serial.print("sensor2 = ");
   sensor[2] = sonar[0].ping_cm();
-  if (sensor[2] == 0){
-      sensor[2] = 200;
-    }
   Serial.print(sensor[2]);
   Serial.print("cm ");
 
@@ -396,9 +380,6 @@ void sensorPolling(){
     
   Serial.print("sensor3 = ");
   sensor[3] = sonar[0].ping_cm();
-  if (sensor[3] == 0){
-      sensor[3] = 200;
-    }
   Serial.print(sensor[3]);
   Serial.print("cm ");
 
@@ -411,9 +392,6 @@ void sensorPolling(){
     
   Serial.print("sensor4 = ");
   sensor[4] = sonar[0].ping_cm();
-  if (sensor[4] == 0){
-      sensor[4] = 200;
-    }
   Serial.print(sensor[4]);
   Serial.print("cm ");
   
@@ -426,9 +404,6 @@ void sensorPolling(){
     
   Serial.print("sensor5 = ");
   sensor[5] = sonar[0].ping_cm();
-  if (sensor[5] == 0){
-      sensor[5] = 200;
-    }
   Serial.print(sensor[5]);
   Serial.print("cm ");
 
@@ -441,9 +416,6 @@ void sensorPolling(){
     
   Serial.print("sensor6 = ");
   sensor[6] = sonar[0].ping_cm();
-  if (sensor[6] == 0){
-      sensor[6] = 200;
-    }
   Serial.print(sensor[6]);
   Serial.print("cm ");
 
@@ -456,9 +428,6 @@ void sensorPolling(){
     
   Serial.print("sensor7 = ");
   sensor[7] = sonar[0].ping_cm();
-  if (sensor[7] == 0){
-      sensor[7] = 200;
-    }
   Serial.print(sensor[7]);
   Serial.print("cm ");
   
