@@ -254,9 +254,9 @@ void loop() {
   sensorPolling();
   //accelerometer();
   
-  /*int hitDetect = accel.raw.y;
-  int detection = -100;
-  if (hitDetect < detection){
+  /*int hitDetect = accel.raw.x;
+  int detection = 100;
+  if (hitDetect > detection){
     camSnap();
   }*/
   while(sensor[0] < sensor[1] & sensor[0] < sensor[2] & sensor[0] < sensor[3] & sensor[0] < sensor[4]){
@@ -545,7 +545,7 @@ void camSnap(){
   Serial.print(" byte image.");
 
   int32_t time = millis();
-  pinMode(8, OUTPUT);
+  //pinMode(8, OUTPUT);
   // Read all the data up to # bytes!
   byte wCount = 0; // For counting # of writes
   while (jpglen > 0) {
