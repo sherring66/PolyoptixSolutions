@@ -146,6 +146,8 @@ End of card info printing*/
   // When using hardware SPI, the SS pin MUST be set to an
   // output (even if not connected or used).  If left as a
   // floating input w/SPI on, this can cause lockuppage.
+  
+/*  
 #if !defined(SOFTWARE_SPI)
 #if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
   if(chipSelect != 53) pinMode(53, OUTPUT); // SS on Mega
@@ -154,7 +156,7 @@ End of card info printing*/
 #endif
 #endif
 
-/*  Serial.println("VC0706 Camera snap");
+  Serial.println("VC0706 Camera snap");
   
   // see if the card is present and can be initialized:
   if (!SD.begin(chipSelect)) {
@@ -466,13 +468,8 @@ void sensorPolling(){
 }
 
 void camSnap(){
-#if !defined(SOFTWARE_SPI)
-#if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
-  if(chipSelect != 53) pinMode(53, OUTPUT); // SS on Mega
-#else
-  if(chipSelect != 10) pinMode(10, OUTPUT); // SS on Uno, etc.
-#endif
-#endif
+	
+  pinMode(10, OUTPUT); // SS on Uno, etc.
 
   //Serial.begin(9600);
   Serial.println("VC0706 Camera snapshot test");
@@ -511,8 +508,8 @@ void camSnap(){
   // You can read the size back from the camera (optional, but maybe useful?)
   uint8_t imgsize = cam.getImageSize();
   Serial.print("Image size: ");
-  if (imgsize == VC0706_640x480) Serial.println("640x480");
-  if (imgsize == VC0706_320x240) Serial.println("320x240");
+  //if (imgsize == VC0706_640x480) Serial.println("640x480");
+  //if (imgsize == VC0706_320x240) Serial.println("320x240");
   if (imgsize == VC0706_160x120) Serial.println("160x120");
 
   Serial.println("Snap in 3 secs...");
@@ -545,7 +542,7 @@ void camSnap(){
   Serial.print(" byte image.");
 
   int32_t time = millis();
-  //pinMode(8, OUTPUT);
+  //pinMode(10, OUTPUT);
   // Read all the data up to # bytes!
   byte wCount = 0; // For counting # of writes
   while (jpglen > 0) {
